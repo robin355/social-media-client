@@ -1,9 +1,12 @@
 import React from 'react';
+import Apparea from './Apparea/Apparea';
+import Banner from './Banner/Banner';
 
 const Home = () => {
     return (
         <div>
-            <h3>Home</h3>
+            <Banner></Banner>
+            <Apparea></Apparea>
         </div>
     );
 };
