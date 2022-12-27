@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { authContext } from '../../AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const { user, Logout } = useContext(authContext)
+    const handleBtn = () => {
+        Logout()
+            .then(() => { toast.success('Logout SuccessFully') })
+            .catch(err => console.log(err))
+    }
     return (
         <div>
             <div className="navbar bg-primary">
@@ -15,6 +23,12 @@ const Navbar = () => {
                             <li><Link to='/media'>Media</Link></li>
                             <li><Link to='/message'>Message</Link></li>
                             <li><Link to='/about'>About</Link></li>
+                            {
+                                user?.uid ?
+                                    <li><button onClick={handleBtn}>Logout</button></li>
+                                    : <li><Link to='/login'>Login</Link></li>
+
+                            }
                         </ul>
                     </div>
                     <Link className="normal-case text-xl">Social Media</Link>
@@ -25,6 +39,12 @@ const Navbar = () => {
                         <li><Link to='/media'>Media</Link></li>
                         <li><Link to='/message'>Message</Link></li>
                         <li><Link to='/about'>About</Link></li>
+                        {
+                            user?.uid ?
+                                <li><button onClick={handleBtn}>Logout</button></li>
+                                : <li><Link to='/login'>Login</Link></li>
+
+                        }
                     </ul>
                 </div>
             </div>
