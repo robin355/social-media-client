@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home";
 import Media from "../Pages/Media/Media";
 import Login from "../Share/Login/Login";
 import SignUp from "../Share/Login/SignUp";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 export const router = createBrowserRouter([
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About></About>
+                element: <PrivateRoutes><About></About></PrivateRoutes>
             },
             {
                 path: '/login',
