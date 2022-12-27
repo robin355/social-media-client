@@ -37,7 +37,6 @@ export const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             }
 
-
         ]
     }
 ])
