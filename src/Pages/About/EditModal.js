@@ -16,7 +16,7 @@ const EditModal = ({ userInfo }) => {
             university,
             address
         }
-        fetch(`http://localhost:5000/userInfo/${userInfo?._id}`, {
+        fetch(`https://social-media-server-red.vercel.app/userInfo/${userInfo?._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

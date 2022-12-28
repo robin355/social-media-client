@@ -14,7 +14,7 @@ const Details = () => {
             image,
             counter: counter + 1
         }
-        fetch(`http://localhost:5000/update/${_id}`, {
+        fetch(`https://social-media-server-red.vercel.app/update/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

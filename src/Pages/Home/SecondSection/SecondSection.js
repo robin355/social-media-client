@@ -4,7 +4,7 @@ import HomePost from './HomePost';
 const SecondSection = () => {
     const [topPost, setTopPost] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/toplike`)
+        fetch(`https://social-media-server-red.vercel.app/toplike`)
             .then(res => res.json())
             .then(data => setTopPost(data))
     }, [])

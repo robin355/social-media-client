@@ -26,7 +26,7 @@ const SignUp = () => {
     }
     const handleUserInfo = (name, email, university, address) => {
         const userInfo = { name, email, university, address }
-        fetch(`http://localhost:5000/userInfo`, {
+        fetch(`https://social-media-server-red.vercel.app/userInfo`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
