@@ -4,7 +4,7 @@ const HomePost = ({ homepost }) => {
     const { image, title, post, counter } = homepost;
     return (
         <div>
-            <div className='mt-10 mb-10'>
+            <div className='mt-8 mb-10'>
                 <div className="card bg-base-100 shadow-xl">
                     <figure><img className='h-[220px]' src={image} alt="Shoes" /></figure>
                     <div className="card-body">
