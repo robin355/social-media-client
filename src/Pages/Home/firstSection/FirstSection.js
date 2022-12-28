@@ -1,32 +1,44 @@
 import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { authContext } from '../../../AuthProvider/AuthProvider';
 
 const FirstSection = () => {
     const { user } = useContext(authContext)
-    const handlePost = event => {
-        event.preventDefault();
-        const form = event.target
-        const title = form.title.value
-        const post = form.post.value
-        const image = form.image.value
-        console.log(title, post, image)
-        const posts = {
-            title,
-            post,
-            image,
-        }
-        fetch(`http://localhost:5000/post`, {
+    const { register, formState: { errors }, handleSubmit } = useForm()
+    const imagehostkey = process.env.REACT_APP_imgbb_key;
+    const handlePost = data => {
+        const image = data.image[0]
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?key=${imagehostkey}`
+        fetch(url, {
             method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(posts)
+            body: formData
         })
             .then(res => res.json())
-            .then(data => {
-                toast.success('Add Post')
+            .then(imgData => {
+                console.log(imgData)
+                if (imgData.success) {
+                    const posts = {
+                        title: data.title,
+                        post: data.post,
+                        image: imgData.data.url
+                    }
+
+                    fetch(`http://localhost:5000/post`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(posts)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            toast.success('Add Post')
+                        })
+                }
             })
     }
     return (
@@ -35,25 +47,42 @@ const FirstSection = () => {
             {
                 user?.email ?
                     <>
-                        <form onSubmit={handlePost}>
-                            <label className="label">
-                                <span className="label-text text-2xl">Post Title</span>
-                            </label>
-                            <input type="text" name='title' placeholder="Post Title" className="input input-bordered w-full" />
-                            <label className="label">
-                                <span className="label-text text-2xl">Your Post</span>
-                            </label>
-                            <textarea className="textarea textarea-bordered w-full mt-3" name='post' placeholder="Your post"></textarea>
-                            <label className="label">
-                                <span className="label-text text-2xl">Post Image</span>
-                            </label>
-                            <input type="file" name='image' placeholder="Type here" className="input file-input-bordered w-full " /> <br />
-                            <button className="btn btn-outline btn-secondary mt-2">Add Post</button>
+                        <form onSubmit={handleSubmit(handlePost)}>
+
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text">Title</span>
+                                </label>
+                                <input type="text" {...register("title", {
+                                    required: "title is required"
+                                })} className="input input-bordered w-full" />
+                                {errors.title && <p className='text-red-600'>{errors.title?.message}</p>}
+                            </div>
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">post</span>
+                                </label>
+                                <input type="text" {...register("post", {
+                                    required: "post Address is required"
+                                })} className="input input-bordered w-full" />
+                                {errors.post && <p className='text-red-600'>{errors.post?.message}</p>}
+                            </div>
+
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">Photo</span>
+                                </label>
+                                <input type="file" {...register("image", {
+                                    required: "Name is required"
+                                })} className="input input-bordered w-full" />
+                                {errors.image && <p className='text-red-600'>{errors.image?.message}</p>}
+                            </div>
+                            <input className='btn btn-outline btn-secondary mt-2 mb-10' value='Add Post' type="submit" />
                         </form>
                     </>
                     : <div className='text-center'>
                         <h3 className='text-3xl text-red-500 text center mt-6'>Plaese Login And Add Post</h3>
-                        <Link to='/login'><button className=" mb-10  btn btn-outline btn-secondary mt-2">Login</button></Link>
+                        <Link to='/login'><button className="mb-10 btn btn-outline btn-secondary mt-2">Login</button></Link>
                     </div>
             }
 

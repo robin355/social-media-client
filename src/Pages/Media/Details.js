@@ -5,9 +5,9 @@ const Details = () => {
     const details = useLoaderData()
     const { title, post, image } = details
     return (
-        <div>
-            <div className="card w-96 bg-base-100 shadow-xl">
-                <figure><img src={image} alt="Shoes" /></figure>
+        <div className='w-96 ml-10'>
+            <div className="card bg-base-100 shadow-xl">
+                <figure><img className='h-[220px]' src={image} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">
                         {title}
