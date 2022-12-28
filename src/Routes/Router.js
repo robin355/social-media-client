@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
+import Details from "../Pages/Media/Details";
 import Media from "../Pages/Media/Media";
 import Login from "../Share/Login/Login";
 import SignUp from "../Share/Login/SignUp";
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/media',
+                loader: () => fetch('http://localhost:5000/post'),
                 element: <Media></Media>
             },
             {
@@ -36,6 +38,11 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/post/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/post/${params.id}`),
+                element: <Details></Details>
             }
 
         ]
