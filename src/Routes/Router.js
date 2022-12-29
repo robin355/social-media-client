@@ -4,6 +4,7 @@ import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
 import Details from "../Pages/Media/Details";
 import Media from "../Pages/Media/Media";
+import ErrorPage from "../Share/ErrorPage/Errorpage";
 import Login from "../Share/Login/Login";
 import SignUp from "../Share/Login/SignUp";
 import PrivateRoutes from "./PrivateRoutes";
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

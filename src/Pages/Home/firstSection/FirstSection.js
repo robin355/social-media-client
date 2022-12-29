@@ -24,7 +24,8 @@ const FirstSection = () => {
                     const posts = {
                         title: data.title,
                         post: data.post,
-                        image: imgData.data.url
+                        image: imgData.data.url,
+                        counter: 0
                     }
 
                     fetch(`https://social-media-server-red.vercel.app/post`, {
