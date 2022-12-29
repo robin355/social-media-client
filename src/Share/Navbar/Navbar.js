@@ -31,10 +31,10 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link className="normal-case text-xl">Social Media</Link>
+                    <Link className="normal-case text-xl text-white">Socibook</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1 text-white">
                         <li><Link to='/home'>Home</Link></li>
                         <li><Link to='/media'>Media</Link></li>
                         <li><Link to='/message'>Message</Link></li>

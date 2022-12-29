@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 import AuthProvider from './AuthProvider/AuthProvider';
 import {
   QueryClient,
@@ -15,10 +14,9 @@ const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-
       <AuthProvider>
         <App />
-        <ToastContainer />
+        <Toaster />
       </AuthProvider>
     </QueryClientProvider>
 

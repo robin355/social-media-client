@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { authContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {

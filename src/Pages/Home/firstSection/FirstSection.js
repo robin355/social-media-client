@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { authContext } from '../../../AuthProvider/AuthProvider';
 
 const FirstSection = () => {
@@ -44,7 +45,7 @@ const FirstSection = () => {
     }
     return (
         <div className='mt-10 ml-2'>
-            <h3 className='text-5xl text-center font-bold'>ADD Post Section </h3>
+            <h3 className='text-5xl text-center text-orange-500 font-bold'>ADD Post Section </h3>
             {
                 user?.email ?
                     <>
@@ -83,7 +84,7 @@ const FirstSection = () => {
                     </>
                     : <div className='text-center'>
                         <h3 className='text-3xl text-red-500 text center mt-6'>Plaese Login And Add Post</h3>
-                        <Link to='/login'><button className="mb-10 btn btn-outline btn-secondary mt-2">Login</button></Link>
+                        <Link to='/login'><button className="mb-6 btn btn-outline btn-secondary mt-2">Login</button></Link>
                     </div>
             }
 

@@ -4,6 +4,7 @@ import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
 import Details from "../Pages/Media/Details";
 import Media from "../Pages/Media/Media";
+import Message from "../Pages/Message/Message";
 import ErrorPage from "../Share/ErrorPage/Errorpage";
 import Login from "../Share/Login/Login";
 import SignUp from "../Share/Login/SignUp";
@@ -28,6 +29,11 @@ export const router = createBrowserRouter([
                 path: '/media',
                 loader: () => fetch('https://social-media-server-red.vercel.app/post'),
                 element: <Media></Media>
+            },
+            {
+                path: '/message',
+                element: <Message></Message>
+
             },
             {
                 path: '/about',
