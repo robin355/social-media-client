@@ -35,7 +35,7 @@ const Details = () => {
     const { data: detailsinfo = [], refetch } = useQuery({
         queryKey: [details._id],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/post/${details._id}`);
+            const res = await fetch(`https://social-media-server-red.vercel.app/post/${details._id}`);
             const data = await res.json();
             return data;
         }
